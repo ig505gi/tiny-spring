@@ -1,3 +1,5 @@
+package cn.coderOrigin.tinyIOC;
+
 /**
  * @author Gao Yuan
  * @date 2020-02-25 - 14:48

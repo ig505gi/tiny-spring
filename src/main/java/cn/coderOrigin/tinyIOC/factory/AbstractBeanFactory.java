@@ -1,13 +1,16 @@
-package cn.coderOrigin.tinyIOC;
+package cn.coderOrigin.tinyIOC.factory;
+
+import cn.coderOrigin.tinyIOC.BeanDefinition;
 
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @author Gao Yuan
- * @date 2020-02-25 - 13:36
+ * @date 2020-02-25 - 14:57
  */
-public class BeanFactory {
+public abstract class AbstractBeanFactory implements BeanFactory {
+
     private Map<String, BeanDefinition> beanDefinitionMap = new ConcurrentHashMap<String, BeanDefinition>();
 
     public Object getBean(String name) {
@@ -15,6 +18,11 @@ public class BeanFactory {
     }
 
     public void registerBeanDefinition(String name, BeanDefinition beanDefinition) {
+        Object bean = doCreatBean(beanDefinition);
+        beanDefinition.setBean(bean);
         beanDefinitionMap.put(name, beanDefinition);
     }
+
+    public abstract Object doCreatBean(BeanDefinition beanDefinition);
+
 }
