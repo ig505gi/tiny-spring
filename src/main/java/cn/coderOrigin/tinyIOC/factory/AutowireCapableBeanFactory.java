@@ -1,6 +1,9 @@
 package cn.coderOrigin.tinyIOC.factory;
 
 import cn.coderOrigin.tinyIOC.BeanDefinition;
+import cn.coderOrigin.tinyIOC.PropertyValue;
+
+import java.lang.reflect.Field;
 
 /**
  * @author Gao Yuan
@@ -8,15 +11,22 @@ import cn.coderOrigin.tinyIOC.BeanDefinition;
  */
 public class AutowireCapableBeanFactory extends AbstractBeanFactory {
 
-    public Object doCreatBean(BeanDefinition beanDefinition) {
-        try {
-            Object bean = beanDefinition.getBeanClass().newInstance();
-            return bean;
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
-        return null;
+    public Object doCreateBean(BeanDefinition beanDefinition) throws Exception{
+        Object bean = creatBeanInstance(beanDefinition);
+        applyPropertyValues(bean, beanDefinition);
+        return bean;
     }
+
+    private Object creatBeanInstance(BeanDefinition beanDefinition) throws Exception{
+        return beanDefinition.getBeanClass().newInstance();
+    }
+    // 这里需要用反射，遍历propertyValues中的各个pv，将其赋值给bean的属性
+    private void applyPropertyValues(Object bean, BeanDefinition beanDefinition) throws Exception {
+        for(PropertyValue pv : beanDefinition.getPropertyValues().getPropertyValueList()) {
+            Field field = beanDefinition.getBeanClass().getDeclaredField(pv.getKey());
+            field.setAccessible(true);
+            field.set(bean, pv.getValue());
+        }
+    }
+
 }
