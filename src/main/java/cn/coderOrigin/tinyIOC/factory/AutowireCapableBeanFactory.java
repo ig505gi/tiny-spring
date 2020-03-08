@@ -1,6 +1,7 @@
 package cn.coderOrigin.tinyIOC.factory;
 
 import cn.coderOrigin.tinyIOC.BeanDefinition;
+import cn.coderOrigin.tinyIOC.BeanReference;
 import cn.coderOrigin.tinyIOC.PropertyValue;
 
 import java.lang.reflect.Field;
@@ -13,6 +14,7 @@ public class AutowireCapableBeanFactory extends AbstractBeanFactory {
 
     public Object doCreateBean(BeanDefinition beanDefinition) throws Exception{
         Object bean = creatBeanInstance(beanDefinition);
+        beanDefinition.setBean(bean);
         applyPropertyValues(bean, beanDefinition);
         return bean;
     }
@@ -25,7 +27,12 @@ public class AutowireCapableBeanFactory extends AbstractBeanFactory {
         for(PropertyValue pv : beanDefinition.getPropertyValues().getPropertyValueList()) {
             Field field = beanDefinition.getBeanClass().getDeclaredField(pv.getKey());
             field.setAccessible(true);
-            field.set(bean, pv.getValue());
+            Object value = pv.getValue();
+            if (value instanceof BeanReference) {
+                BeanReference beanReference = (BeanReference) value;
+                value = getBean(beanReference.getName());
+            }
+            field.set(bean, value);
         }
     }
 

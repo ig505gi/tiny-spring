@@ -3,6 +3,10 @@
 
     <bean name="helloWorldService" class="cn.coderOrigin.tinyIOC.HelloWorldService">
         <property name="text" value="Hello World!"></property>
+        <property name="outputService" ref="outputService"></property>
     </bean>
 
+    <bean name="outputService" class="cn.coderOrigin.tinyIOC.OutputService">
+        <property name="helloWorldService" ref="helloWorldService"></property>
+    </bean>
 </beans>

@@ -2,6 +2,7 @@ package cn.coderOrigin.tinyIOC.xml;
 
 import cn.coderOrigin.tinyIOC.AbstractBeanDefinitionReader;
 import cn.coderOrigin.tinyIOC.BeanDefinition;
+import cn.coderOrigin.tinyIOC.BeanReference;
 import cn.coderOrigin.tinyIOC.PropertyValue;
 import cn.coderOrigin.tinyIOC.io.ResourceLoader;
 import org.w3c.dom.Document;
@@ -70,7 +71,19 @@ public class XmlBeanDefinitionReader extends AbstractBeanDefinitionReader {
                 Element propertyEle = (Element) node;
                 String propertyName = propertyEle.getAttribute("name");
                 String propertyValue = propertyEle.getAttribute("value");
-                beanDefinition.getPropertyValues().addPropertyValue(new PropertyValue(propertyName, propertyValue));
+                // 这个循环思路看似简单，但是值得学习，把两种异常卸载了一个地方，省了很多代码。
+                if (propertyValue != null && propertyValue.length() > 0) {
+                    beanDefinition.getPropertyValues().addPropertyValue(new PropertyValue(propertyName, propertyValue));
+                } else {
+                    String ref = propertyEle.getAttribute("ref");
+                    if (ref == null || ref.length() == 0 ) {
+                        throw new IllegalArgumentException("Configuration problem: <property> element " +
+                                "for property '" + propertyName + "' must specify a ref or value");
+                    }
+                    BeanReference beanReference = new BeanReference(ref);
+                    beanDefinition.getPropertyValues().addPropertyValue(new PropertyValue(propertyName, beanReference));
+                }
+
             }
         }
     }
