@@ -1,8 +1,8 @@
-package cn.coderOrigin.tinyIOC.factory;
+package cn.coderOrigin.tinyIOC.beans.factory;
 
-import cn.coderOrigin.tinyIOC.BeanDefinition;
-import cn.coderOrigin.tinyIOC.BeanReference;
-import cn.coderOrigin.tinyIOC.PropertyValue;
+import cn.coderOrigin.tinyIOC.beans.BeanDefinition;
+import cn.coderOrigin.tinyIOC.beans.BeanReference;
+import cn.coderOrigin.tinyIOC.beans.PropertyValue;
 
 import java.lang.reflect.Field;
 

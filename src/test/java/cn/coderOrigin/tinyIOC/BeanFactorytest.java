@@ -1,10 +1,12 @@
 package cn.coderOrigin.tinyIOC;
 
-import cn.coderOrigin.tinyIOC.factory.AbstractBeanFactory;
-import cn.coderOrigin.tinyIOC.factory.AutowireCapableBeanFactory;
-import cn.coderOrigin.tinyIOC.factory.BeanFactory;
-import cn.coderOrigin.tinyIOC.io.ResourceLoader;
-import cn.coderOrigin.tinyIOC.xml.XmlBeanDefinitionReader;
+import cn.coderOrigin.tinyIOC.beans.BeanDefinition;
+import cn.coderOrigin.tinyIOC.beans.factory.AbstractBeanFactory;
+import cn.coderOrigin.tinyIOC.beans.factory.AutowireCapableBeanFactory;
+import cn.coderOrigin.tinyIOC.beans.io.ResourceLoader;
+import cn.coderOrigin.tinyIOC.beans.xml.XmlBeanDefinitionReader;
+import cn.coderOrigin.tinyIOC.context.ApplicationContext;
+import cn.coderOrigin.tinyIOC.context.ClassPathXmlApplicationContext;
 import org.junit.Test;
 
 import java.util.Map;
@@ -52,6 +54,13 @@ public class BeanFactorytest {
 
         // 3.获取bean
         HelloWorldService helloWorldService = (HelloWorldService) beanFactory.getBean("helloWorldService");
+        helloWorldService.helloWorld();
+    }
+
+    @Test
+    public void testContext() throws Exception {
+        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("tinyioc.xml");
+        HelloWorldService helloWorldService = (HelloWorldService) applicationContext.getBean("helloWorldService");
         helloWorldService.helloWorld();
     }
 }

@@ -1,6 +1,6 @@
-package cn.coderOrigin.tinyIOC;
+package cn.coderOrigin.tinyIOC.beans;
 
-import cn.coderOrigin.tinyIOC.io.ResourceLoader;
+import cn.coderOrigin.tinyIOC.beans.io.ResourceLoader;
 
 import java.util.HashMap;
 

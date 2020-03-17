@@ -1,10 +1,10 @@
-package cn.coderOrigin.tinyIOC.xml;
+package cn.coderOrigin.tinyIOC.beans.xml;
 
-import cn.coderOrigin.tinyIOC.AbstractBeanDefinitionReader;
-import cn.coderOrigin.tinyIOC.BeanDefinition;
-import cn.coderOrigin.tinyIOC.BeanReference;
-import cn.coderOrigin.tinyIOC.PropertyValue;
-import cn.coderOrigin.tinyIOC.io.ResourceLoader;
+import cn.coderOrigin.tinyIOC.beans.AbstractBeanDefinitionReader;
+import cn.coderOrigin.tinyIOC.beans.BeanDefinition;
+import cn.coderOrigin.tinyIOC.beans.BeanReference;
+import cn.coderOrigin.tinyIOC.beans.PropertyValue;
+import cn.coderOrigin.tinyIOC.beans.io.ResourceLoader;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;

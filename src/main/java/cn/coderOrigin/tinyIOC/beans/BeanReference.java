@@ -1,4 +1,4 @@
-package cn.coderOrigin.tinyIOC;
+package cn.coderOrigin.tinyIOC.beans;
 
 /**
  * @author Gao Yuan

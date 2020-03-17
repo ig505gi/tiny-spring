@@ -1,6 +1,6 @@
-package cn.coderOrigin.tinyIOC.factory;
+package cn.coderOrigin.tinyIOC.beans.factory;
 
-import cn.coderOrigin.tinyIOC.BeanDefinition;
+import cn.coderOrigin.tinyIOC.beans.BeanDefinition;
 
 import java.util.ArrayList;
 import java.util.Iterator;

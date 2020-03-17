@@ -1,4 +1,4 @@
-package cn.coderOrigin.tinyIOC;
+package cn.coderOrigin.tinyIOC.beans;
 
 import java.util.ArrayList;
 import java.util.List;

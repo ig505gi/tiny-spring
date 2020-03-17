@@ -1,4 +1,4 @@
-package cn.coderOrigin.tinyIOC.io;
+package cn.coderOrigin.tinyIOC.beans.io;
 
 import java.io.IOException;
 import java.io.InputStream;
