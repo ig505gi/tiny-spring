@@ -27,7 +27,7 @@ public class ClassPathXmlApplicationContext extends AbstractApplicationContext {
     }
 
     @Override
-    public void refresh() throws Exception {
+    protected void loadBeanDefinitions(AbstractBeanFactory beanFactory) throws Exception {
         // 1.读取配置
         XmlBeanDefinitionReader xmlBeanDefinitionReader = new XmlBeanDefinitionReader(new ResourceLoader());
         xmlBeanDefinitionReader.loadBeanDefinitions(configLocation);

@@ -11,19 +11,8 @@ import java.lang.reflect.Field;
  * @date 2020-02-25 - 14:59
  */
 public class AutowireCapableBeanFactory extends AbstractBeanFactory {
-
-    public Object doCreateBean(BeanDefinition beanDefinition) throws Exception{
-        Object bean = creatBeanInstance(beanDefinition);
-        beanDefinition.setBean(bean);
-        applyPropertyValues(bean, beanDefinition);
-        return bean;
-    }
-
-    private Object creatBeanInstance(BeanDefinition beanDefinition) throws Exception{
-        return beanDefinition.getBeanClass().newInstance();
-    }
     // 这里需要用反射，遍历propertyValues中的各个pv，将其赋值给bean的属性
-    private void applyPropertyValues(Object bean, BeanDefinition beanDefinition) throws Exception {
+    protected void applyPropertyValues(Object bean, BeanDefinition beanDefinition) throws Exception {
         for(PropertyValue pv : beanDefinition.getPropertyValues().getPropertyValueList()) {
             Field field = beanDefinition.getBeanClass().getDeclaredField(pv.getKey());
             field.setAccessible(true);
