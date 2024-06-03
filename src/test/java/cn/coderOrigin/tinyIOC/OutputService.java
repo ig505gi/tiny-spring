@@ -6,7 +6,7 @@ package cn.coderOrigin.tinyIOC;
  */
 public class OutputService {
 
-    private HelloWorldService helloWorldService;
+    private HelloWorldServiceImpl helloWorldService;
 
     public void output(String text) {
         if (helloWorldService != null) {
@@ -14,7 +14,7 @@ public class OutputService {
         }
     }
 
-    public void setHelloWorldService(HelloWorldService helloWorldService) {
+    public void setHelloWorldService(HelloWorldServiceImpl helloWorldService) {
         this.helloWorldService = helloWorldService;
     }
 }
